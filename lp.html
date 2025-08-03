@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>صفحة العرض</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 👮‍♂️ Cloaking سريع -->
+  <script>
+    const TIKTOK_UA_PATTERNS = [
+      'tiktok', 'tiktokbot', 'tiktokcrawler', 'tiktokspider',
+      'tiktokscraper', 'tiktokapp', 'tiktoknetwork', 'tiktokdownload',
+      'tiktokcdn', 'tiktokapi', 'tiktokm', 'tiktokshop', 'tiktokads',
+      'tiktoklive', 'tiktokmusic', 'tiktokplatform', 'tiktokdata',
+      'tiktokanalytics', 'tiktokverify', 'tiktoktest', 'tiktokbot-ip'
+    ];
+    const isBot = () => {
+      const agent = navigator.userAgent.toLowerCase();
+      return TIKTOK_UA_PATTERNS.some(p => agent.includes(p)) || /bot|crawl|spider|facebookexternalhit/.test(agent);
+    };
+    if (isBot()) {
+      document.write(`<img src="https://cdn.youcan.shop/stores/8240afd68d2f7cdf0d24622b605728ab/products/VvjlcdZ64tn5aQ9GkERvYWDryvnspjPiLglLiasJ_lg.jpg" style="width:100%;display:block;">`);
+      throw new Error("Bot blocked");
+    }
+  </script>
+
+  <style>
+    body { margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+
+    #whatsapp-button {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 9999;
+      animation: pulse 2s infinite;
+    }
+    #whatsapp-button img {
+      width: 60px;
+      height: 60px;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    #stickyButton {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: green;
+      color: white;
+      font-size: 20px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 9999;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(-15px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(-7px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 🌐 زر واتساب -->
+<a href="https://wa.me/212601745129" target="_blank" id="whatsapp-button" title="تواصل معنا على واتساب">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
+
+<script>
+  const imageForMA = "https://cdn.youcan.shop/stores/c796bcd13bfb7dae61fae49d1f5399a6/others/zoyDrlCHs5fNVeX9SsHhI1Iw7qZdTwE9uNhw8Scn.webp";
+  const imageForOthers = "https://cdn.youcan.shop/stores/c796bcd13bfb7dae61fae49d1f5399a6/products/tbDFptCljJBR6ydbKl6kRXIidccDee650jCqa1XV_lg.png";
+
+  const fetchCountry = async () => {
+    try {
+      const res = await fetch("https://apiip.net/api/check?accessKey=9d139f97-0ceb-46f3-98fa-2e20d7c577d7");
+      const data = await res.json();
+      return data.countryCode || null;
+    } catch (e1) {
+      try {
+        const res2 = await fetch("https://ipapi.co/json/");
+        const data2 = await res2.json();
+        return data2.country || null;
+      } catch (e2) {
+        return null;
+      }
+    }
+  };
+
+  const displayContent = (imgUrl, showAudio = true) => {
+    const container = document.createElement("div");
+    container.style.direction = "rtl";
+
+    const img = document.createElement("img");
+    img.src = imgUrl;
+    img.style.width = "100%";
+    img.style.display = "block";
+    img.style.cursor = "pointer";
+
+    img.onclick = () => {
+      const audio = document.getElementById("audio1");
+      if (audio) {
+        const play = audio.play();
+        if (play !== undefined) play.catch(e => console.log("Blocked:", e));
+      }
+      const checkout = document.querySelector(".section.page-section.express-checkout-form-section");
+      if (checkout) {
+        checkout.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    };
+
+    container.appendChild(img);
+
+    if (showAudio) {
+      const audioBlock = document.createElement("div");
+      audioBlock.style.background = "#f8f8f8";
+      audioBlock.style.padding = "20px";
+      audioBlock.style.textAlign = "center";
+      audioBlock.innerHTML = `
+        <p style="font-weight:bold;">🔊 آراء الزبائن:</p>
+        <audio id="audio1" controls>
+          <source src="https://raw.githubusercontent.com/ghounbaz/audio1/main/audio%203.MP3" type="audio/mpeg">
+        </audio>
+        <br><br>
+        <audio controls>
+          <source src="https://raw.githubusercontent.com/ghounbaz/audio1/main/rev%2022.MP3" type="audio/mpeg">
+        </audio>
+        <br><br>
+        <audio controls>
+          <source src="https://raw.githubusercontent.com/ghounbaz/audio1/main/revio.mp3" type="audio/mpeg">
+        </audio>
+      `;
+      container.appendChild(audioBlock);
+    }
+
+    const checkout = document.querySelector(".section.page-section.express-checkout-form-section");
+    if (checkout) {
+      checkout.style.maxWidth = "600px";
+      checkout.style.margin = "0 auto";
+      checkout.style.direction = "rtl";
+      container.appendChild(checkout);
+    }
+
+    document.body.appendChild(container);
+
+    const btn = document.createElement("button");
+    btn.id = "stickyButton";
+    btn.innerHTML = "أطلــــبوه الأن";
+    btn.onclick = () => {
+      if (checkout) checkout.scrollIntoView({ behavior: "smooth", block: "center" });
+    };
+    document.body.appendChild(btn);
+  };
+
+  // 🎯 AutoPlay
+  let interacted = false;
+  const playFirstAudio = () => {
+    if (interacted) return;
+    interacted = true;
+    const a1 = document.getElementById("audio1");
+    if (a1) {
+      const p = a1.play();
+      if (p !== undefined) p.catch(e => console.log("Autoplay blocked:", e));
+    }
+  };
+  window.addEventListener("click", playFirstAudio);
+  window.addEventListener("touchstart", playFirstAudio);
+
+  (async () => {
+    const country = await fetchCountry();
+    const isMA = country === "MA";
+    displayContent(isMA ? imageForMA : imageForOthers, isMA);
+  })();
+</script>
+
+</body>
+</html>
